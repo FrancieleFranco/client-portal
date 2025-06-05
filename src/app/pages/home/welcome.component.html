@@ -1,0 +1,25 @@
+<div class="container">
+
+<form [formGroup]="formEnter" (ngSubmit)="enterClient()" class="form-enter">
+  <div class="input-enter">
+<label for="name" class="name-label">Olá, seja bem-vindo!</label><br />
+  <input
+    id="name"
+    class="name-input"
+    type="text"
+    formControlName="name"
+    placeholder="Digite seu nome:"
+  />
+   <div class="bnt-enter">
+    <app-button
+      type="submit"
+      [disabled]="formEnter.invalid"
+      [labelButton]="'Entrar'"
+    ></app-button>
+  </div>
+
+
+  </div>
+</form>
+
+</div>

@@ -1,0 +1,31 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.content-header {
+  padding: 16px;
+}
+
+.client-card {
+  text-align: center;
+}
+
+.layout-container {
+  height: 100vh;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.client-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

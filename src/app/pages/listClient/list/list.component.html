@@ -1,0 +1,68 @@
+<div>
+  <mat-sidenav-container class="sidenav-container" autosize>
+    <mat-sidenav
+      mode="side"
+      #sidenav
+      mode="side"
+      opened="false"
+      class="sidenav"
+    >
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>person</mat-icon>
+          <span>Clientes</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>person</mat-icon>
+          <span>Clientes selecion.</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="content-header">
+        <h2>16 clientes encontrados</h2>
+      </div>
+
+      <div class="cards-grid">
+        <mat-card *ngFor="let clients of clients" class="client-card">
+          <mat-card-title>{{ clients.name }}</mat-card-title>
+          <mat-card-content>
+            <p>Salário: R$ {{ clients.salary }}</p>
+            <p>Empresa: R$ [{{ clients.companyValuation }}]</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="adicionar(clients)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="editar(clients)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="red" (click)="excluir(clients)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <mat-paginator
+        [length]="clients.length"
+        [pageSize]="3"
+        [pageSizeOptions]="[16]"
+        (page)="paginar($event)"
+      >
+      </mat-paginator>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

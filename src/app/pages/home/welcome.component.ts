@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Button } from '../../components/button/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,15 @@ export class WelcomeComponent implements OnInit {
 
   formEnter: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.formEnter = this.fb.group({
       name: [''],
     });
   }
 
   enterClient() {
-    const name = this.formEnter.get('name')?.value ;
-      console.log(name, "ola")
+    const name = this.formEnter.get('name')?.value;
+    this.router.navigate(['/list-component']);
+    console.log(name, 'ola');
   }
-
 }

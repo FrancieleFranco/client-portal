@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +31,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatPaginatorModule,
     MatToolbarModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatIconModule,
   ],
 
   templateUrl: './app.html',

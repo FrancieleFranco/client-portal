@@ -36,20 +36,20 @@
           <mat-card-title>{{ clients.name }}</mat-card-title>
           <mat-card-content>
             <p>Salário: R$ {{ clients.salary }}</p>
-            <p>Empresa: R$ [{{ clients.companyValuation }}]</p>
+            <p>Empresa: R$ {{ clients.companyValuation }}</p>
           </mat-card-content>
           <mat-card-actions>
             <button
               mat-icon-button
               color="primary"
-              (click)="adicionar(clients)"
+
             >
               <mat-icon>add</mat-icon>
             </button>
-            <button mat-icon-button color="accent" (click)="editar(clients)">
+            <button mat-icon-button color="accent" >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="red" (click)="excluir(clients)">
+            <button mat-icon-button color="red" (click)=" deleteClient(clients.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </mat-card-actions>
@@ -60,9 +60,14 @@
         [length]="clients.length"
         [pageSize]="3"
         [pageSizeOptions]="[16]"
-        (page)="paginar($event)"
+
       >
       </mat-paginator>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+
+
+
+

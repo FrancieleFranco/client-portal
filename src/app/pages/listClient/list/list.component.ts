@@ -9,6 +9,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ClientRequest } from '../../../models/client-request.model';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalDelete } from '../../../components/modal-delete/modal-delete';
 
 @Component({
   selector: 'app-list',
@@ -26,10 +29,16 @@ import { ClientRequest } from '../../../models/client-request.model';
     MatButtonModule,
     MatPaginatorModule,
     MatToolbarModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
 })
 export class ListComponent implements OnInit {
-  constructor(private clientService: ClientService) {}
+  constructor(
+    private clientService: ClientService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.searchClients(this.currentPage, this.pageSize);
@@ -57,5 +66,29 @@ export class ListComponent implements OnInit {
         console.error('Erro ao buscar clientes:', err);
       },
     });
+  }
+
+  fetchClients(): void {
+    this.clientService.listClients(1, 10).subscribe((res) => {
+      this.clients = res.clients;
+    });
+  }
+
+  deleteClient(id: number): void {
+    this.dialog
+      .open(ModalDelete)
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.clientService.deleteClient(id).subscribe({
+            next: () => {
+              console.log('Cliente excluído com sucesso!');
+            },
+            error: (err) => {
+              console.error('Erro ao excluir cliente', err);
+            },
+          });
+        }
+      });
   }
 }

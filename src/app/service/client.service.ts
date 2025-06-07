@@ -24,4 +24,10 @@ console.log('Chamando API:', this.baseUrl, 'com params:', params.toString())
     return this.http.get<ClientResponse>(this.baseUrl, {params});
 
   }
+
+   deleteClient(id: number) {
+    return this.http.delete(`${this. baseUrl}/${id}`,{
+      responseType: 'text' as 'json'
+    });
+  }
 }

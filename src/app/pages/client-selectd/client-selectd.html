@@ -1,0 +1,24 @@
+<div>
+  <mat-sidenav-container class="sidenav-container" autosize>
+    <div class="cards-grid">
+      <mat-card
+        *ngFor="let cliente of clientesSelecionados"
+        class="client-card"
+      >
+        <mat-card-title>{{ cliente.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Salário: R$ {{ cliente.salary }}</p>
+          <p>Empresa: R$ {{ cliente.companyValuation }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-card>
+      <div class="bnt-selected">
+        <app-button
+          type="submit"
+          [labelButton]="'Limpar clientes selecionados'"
+        ></app-button>
+      </div>
+    </mat-card>
+  </mat-sidenav-container>
+</div>

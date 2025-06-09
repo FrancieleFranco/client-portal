@@ -31,56 +31,69 @@
         <h2>16 clientes encontrados</h2>
       </div>
 
+      <div class="bnt-create">
+        <app-button (click)="goToSelected()" [labelButton]="'Ver clientes selecionados'">
+
+        </app-button>
+      </div>
+
       <div class="cards-grid">
-        <mat-card *ngFor="let clients of clients" class="client-card">
+        <mat-card
+          *ngFor="let clients of clients"
+          class="client-card"
+          [class.selected]="clientSelected(clients)"
+        >
+          <button mat-icon-button (click)="selectedCliente(clients)">
+            <mat-icon>
+              {{
+                clientSelected(clients)
+                  ? "check_circle"
+                  : "radio_button_unchecked"
+              }}
+            </mat-icon>
+          </button>
+
           <mat-card-title>{{ clients.name }}</mat-card-title>
           <mat-card-content>
             <p>Salário: R$ {{ clients.salary }}</p>
             <p>Empresa: R$ {{ clients.companyValuation }}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button
-              mat-icon-button
-              color="primary"
-
-            >
+            <button mat-icon-button color="primary">
               <mat-icon>add</mat-icon>
             </button>
-            <button mat-icon-button color="accent" (click)="modalEdit(clients.id)">
+            <button
+              mat-icon-button
+              color="accent"
+              (click)="modalEdit(clients.id)"
+            >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="red" (click)=" deleteClient(clients.id)">
+            <button
+              mat-icon-button
+              color="red"
+              (click)="deleteClient(clients.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
-
-
           </mat-card-actions>
-
         </mat-card>
-
       </div>
-    <mat-card>
+      <mat-card>
         <div class="bnt-create">
-        <app-button
-          type="submit"
-          (click)="modalCreate()"
-
-          [labelButton]="'Criar cliente'"
-        ></app-button>
-      </div>
-    </mat-card>
+          <app-button
+            type="submit"
+            (click)="modalCreate()"
+            [labelButton]="'Criar cliente'"
+          ></app-button>
+        </div>
+      </mat-card>
       <mat-paginator
         [length]="clients.length"
         [pageSize]="3"
         [pageSizeOptions]="[16]"
-
       >
       </mat-paginator>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-
-
-
-

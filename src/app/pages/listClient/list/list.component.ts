@@ -15,8 +15,10 @@ import { ModalDelete } from '../../../components/modal-delete/modal-delete';
 import { ModalEdit } from '../../../components/modal-edit/modal-edit';
 import { C } from '@angular/cdk/keycodes';
 import { ClientData } from '../../../models/clients-data.model';
-import { Button } from "../../../components/button/button";
+import { Button } from '../../../components/button/button';
 import { ModalCreate } from '../../../components/modal-create/modal-create';
+import { ClientSelectedService } from '../../../service/clientSelected.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -37,13 +39,15 @@ import { ModalCreate } from '../../../components/modal-create/modal-create';
     MatSnackBarModule,
     MatDialogModule,
     Button,
-],
+  ],
 })
 export class ListComponent implements OnInit {
   constructor(
     private clientService: ClientService,
+    private clientSelectedService: ClientSelectedService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -80,7 +84,7 @@ export class ListComponent implements OnInit {
 
   deleteClient(id: number): void {
     this.dialog
-      .open(ModalDelete,{
+      .open(ModalDelete, {
         width: '400px',
       })
       .afterClosed()
@@ -112,15 +116,30 @@ export class ListComponent implements OnInit {
     });
   }
 
-
   modalCreate() {
-const dialogCreateClient = this.dialog.open(ModalCreate,{
-        width: '400px',
-      });
+    const dialogCreateClient = this.dialog.open(ModalCreate, {
+      width: '400px',
+    });
 
- dialogCreateClient.afterClosed().subscribe(result => {
-    if (result) {
-      this.searchClients(); // Recarrega a lista após criação
-    }
+    dialogCreateClient.afterClosed().subscribe((result) => {
+      if (result) {
+        this.searchClients(); // Recarrega a lista após criação
+      }
+    });
+  }
 
- })} }
+  selectedCliente(client: ClientData) {
+    this.clientSelectedService.addSelected(client);
+    this.clientSelectedService.addSelected(client);
+
+    console.log(`Cliente selecionado:`, client);
+  }
+
+  clientSelected(cliente: ClientData): boolean {
+    return this.clientSelectedService.clientSelected(cliente.id);
+  }
+
+  goToSelected(): void {
+    this.router.navigate(['/list-client-selected']);
+  }
+}

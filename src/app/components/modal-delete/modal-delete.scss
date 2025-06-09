@@ -36,4 +36,7 @@
   width: 0.01%;
 }
 
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+}
 

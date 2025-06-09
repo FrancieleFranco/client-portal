@@ -15,6 +15,8 @@ import { ModalDelete } from '../../../components/modal-delete/modal-delete';
 import { ModalEdit } from '../../../components/modal-edit/modal-edit';
 import { C } from '@angular/cdk/keycodes';
 import { ClientData } from '../../../models/clients-data.model';
+import { Button } from "../../../components/button/button";
+import { ModalCreate } from '../../../components/modal-create/modal-create';
 
 @Component({
   selector: 'app-list',
@@ -34,7 +36,8 @@ import { ClientData } from '../../../models/clients-data.model';
     MatToolbarModule,
     MatSnackBarModule,
     MatDialogModule,
-  ],
+    Button,
+],
 })
 export class ListComponent implements OnInit {
   constructor(
@@ -55,7 +58,7 @@ export class ListComponent implements OnInit {
 
   clients: ClientData[] = [];
   page = 1;
-  limit = 10;
+  limit = 16;
   totalPages = 0;
 
   toggleSidenav() {
@@ -108,4 +111,16 @@ export class ListComponent implements OnInit {
       }
     });
   }
-}
+
+
+  modalCreate() {
+const dialogCreateClient = this.dialog.open(ModalCreate,{
+        width: '400px',
+      });
+
+ dialogCreateClient.afterClosed().subscribe(result => {
+    if (result) {
+      this.searchClients(); // Recarrega a lista após criação
+    }
+
+ })} }

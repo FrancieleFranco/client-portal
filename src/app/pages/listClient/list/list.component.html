@@ -52,10 +52,23 @@
             <button mat-icon-button color="red" (click)=" deleteClient(clients.id)">
               <mat-icon>delete</mat-icon>
             </button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
 
+
+          </mat-card-actions>
+
+        </mat-card>
+
+      </div>
+    <mat-card>
+        <div class="bnt-create">
+        <app-button
+          type="submit"
+          (click)="modalCreate()"
+
+          [labelButton]="'Criar cliente'"
+        ></app-button>
+      </div>
+    </mat-card>
       <mat-paginator
         [length]="clients.length"
         [pageSize]="3"

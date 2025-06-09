@@ -1,5 +1,3 @@
-:host ::ng -deepdiv#cdk-overlay-11 {
-border-radius: 0 !important;}
 
 .custom-dialog-container {
   width: 90vw !important;
@@ -20,7 +18,7 @@ border-radius: 0 !important;}
   box-shadow: none !important;
 }
 
-.input-edit-form{
+.input-create-form{
   color: #000000 !important;
   width: 100%;
   max-width: 400px;
@@ -29,11 +27,11 @@ border-radius: 0 !important;}
 
 }
 
-.input-edit{
+.input-create{
   border: none;
 }
 
-.btn-edit {
+.btn-create {
   background-color: #ec6724 !important;
   color: #ffffff !important;
   border-radius: 0 !important;
@@ -42,12 +40,12 @@ border-radius: 0 !important;}
   box-sizing: border-box;
 }
 
-.edit {
+.create {
   color: #000000;
   font-family: "Inter";
 }
 
-.title-edit {
+.title-create {
   font-weight: bold;
   font-size: 16px;
 }
@@ -61,11 +59,10 @@ border-radius: 0 !important;}
 
 }
 
+::ng-deep .mat-mdc-card {
+  border-radius: 0!important;
+}
 
-:host ::ng-deep .mat-mdc-dialog-surface.mdc-dialog__surface {
-  width: 400px !important;
-  height: 269px !important;
-  border-radius: 4px !important;
-  background-color: #fff !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: red 0 !important;
 }

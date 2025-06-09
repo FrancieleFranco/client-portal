@@ -4,9 +4,10 @@ import { ListComponent } from './pages/listClient/list/list.component';
 import { ClientSelectd } from './pages/client-selectd/client-selectd';
 
 export const routes: Routes = [
-  { path: '', component: WelcomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: WelcomeComponent },
   { path: 'list-component', component: ListComponent },
   { path: 'list-client-selected', component: ClientSelectd },
-
+  { path: '**', redirectTo: 'home' },
 
 ];

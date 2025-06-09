@@ -1,4 +1,4 @@
-<div>
+
   <mat-sidenav-container class="sidenav-container" autosize>
     <mat-sidenav
       mode="side"
@@ -7,33 +7,48 @@
       opened="false"
       class="sidenav"
     >
-      <mat-nav-list>
-        <mat-list-item>
-          <mat-icon>home</mat-icon>
-          <span>Home</span>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>person</mat-icon>
-          <span>Clientes</span>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>person</mat-icon>
-          <span>Clientes selecion.</span>
-        </mat-list-item>
+      <mat-toolbar color="primary" class="top-header">
+        <img src="assets/images/home.png" alt="Logo" class="logo-home" />
+      </mat-toolbar>
+      <mat-nav-list class="nav-link-home">
+
+          <mat-list-item>
+            <mat-icon>home</mat-icon>
+            <a mat-button routerLink="/list-component">Home</a>
+          </mat-list-item>
+
+          <mat-list-item>
+            <mat-icon>person</mat-icon>
+            <a mat-button routerLink="/list-component">Clientes</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>person</mat-icon>
+            <a mat-button routerLink="/list-client-selected"
+              >Clientes Selecionados</a
+            >
+          </mat-list-item>
+
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div class="top-bar-container">
+        <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <app-header></app-header>
+      </div>
+
       <div class="content-header">
         <h2>16 clientes encontrados</h2>
       </div>
 
       <div class="bnt-create">
-        <app-button (click)="goToSelected()" [labelButton]="'Ver clientes selecionados'">
-
+        <app-button
+          (click)="goToSelected()"
+          [labelButton]="'Ver clientes selecionados'"
+        >
         </app-button>
       </div>
 
@@ -88,12 +103,5 @@
           ></app-button>
         </div>
       </mat-card>
-      <mat-paginator
-        [length]="clients.length"
-        [pageSize]="3"
-        [pageSizeOptions]="[16]"
-      >
-      </mat-paginator>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>

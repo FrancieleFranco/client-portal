@@ -9,11 +9,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { Header } from "../../components/header/header";
 
 @Component({
   selector: 'app-client-selectd',
   imports: [CommonModule, MatCardModule, FormsModule, ReactiveFormsModule, MatCardModule, MatIconModule,
-    MatSidenavModule, Button],
+    MatSidenavModule, Button, Header],
   templateUrl: './client-selectd.html',
   styleUrl: './client-selectd.scss'
 })
@@ -24,11 +25,11 @@ export class ClientSelectd {
     private clientSelectedService: ClientSelectedService
   ) {}
 
-clientesSelecionados: ClientData[] = [];
+clientsSelected: ClientData[] = [];
 
 
 ngOnInit() {
-  this.clientesSelecionados = this.clientSelectedService.getSelecionados();
+  this.clientsSelected = this.clientSelectedService.getSelecionados();
 }
 }
 

@@ -18,7 +18,8 @@ import { ClientData } from '../../../models/clients-data.model';
 import { Button } from '../../../components/button/button';
 import { ModalCreate } from '../../../components/modal-create/modal-create';
 import { ClientSelectedService } from '../../../service/clientSelected.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Header } from "../../../components/header/header";
 
 @Component({
   selector: 'app-list',
@@ -39,7 +40,9 @@ import { Router } from '@angular/router';
     MatSnackBarModule,
     MatDialogModule,
     Button,
-  ],
+    RouterModule,
+    Header
+],
 })
 export class ListComponent implements OnInit {
   constructor(

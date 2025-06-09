@@ -1,33 +1,50 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientResponse } from '../models/client-response.model';
-
-
+import { ClientRequest } from '../models/client-request.model';
+import {
+  ClientCreate,
+  ClientData,
+  ClientUpdate,
+} from '../models/clients-data.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClientService {
+  private baseURL = 'https://boasorte.teddybackoffice.com.br/users';
 
-  private baseUrl = 'https://boasorte.teddybackoffice.com.br/users';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  listClients(page: number, limit: number): Observable<ClientResponse> {
-     let params = new HttpParams()
-    .set('page', page.toString())
-    .set('limit', limit.toString());
-console.log('Chamando API com params:', params);
-console.log('Chamando API:', this.baseUrl, 'com params:', params.toString())
-
-    return this.http.get<ClientResponse>(this.baseUrl, {params});
-
+  getClients(
+    page: number,
+    limit: number
+  ): Observable<{
+    clients: ClientData[];
+    totalPages: number;
+    currentPage: number;
+  }> {
+    return this.http.get<{
+      clients: ClientData[];
+      totalPages: number;
+      currentPage: number;
+    }>(`${this.baseURL}?page=${page}&limit=${limit}`);
   }
 
-   deleteClient(id: number) {
-    return this.http.delete(`${this. baseUrl}/${id}`,{
-      responseType: 'text' as 'json'
-    });
+  deleteClient(id: number): Observable<any> {
+    return this.http.delete(`${this.baseURL}/${id}`, { responseType: 'text' });
+  }
+
+  listClients(id: number): Observable<ClientData> {
+    return this.http.get<ClientData>(`${this.baseURL}/${id}`);
+  }
+
+  patchClient(id: number, data: ClientUpdate): Observable<ClientData> {
+    return this.http.patch<ClientData>(`${this.baseURL}/${id}`, data);
+  }
+
+  createClient(data: ClientCreate): Observable<ClientData> {
+    return this.http.post<ClientData>(`${this.baseURL}`, data);
   }
 }

@@ -3,13 +3,34 @@
   max-width: 600px !important;
   height: 80vh !important;
   max-height: 500px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
 }
 
-.btn-delete {
+:host ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--no-label {
+  border: 2px solid #D9D9D9 !important;
+  background-color:  #ffffff!important;
+
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex:hover {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input-edit-form{
+  color: #000000 !important;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  font-family: "Inter";
+
+}
+
+.input-edit{
+  border: none;
+}
+
+.btn-edit {
   background-color: #ec6724 !important;
   color: #ffffff !important;
   border-radius: 0 !important;
@@ -23,7 +44,7 @@
   font-family: "Inter";
 }
 
-.title-delete {
+.title-edit {
   font-weight: bold;
   font-size: 16px;
 }

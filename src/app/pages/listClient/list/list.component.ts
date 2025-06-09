@@ -12,6 +12,9 @@ import { ClientRequest } from '../../../models/client-request.model';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalDelete } from '../../../components/modal-delete/modal-delete';
+import { ModalEdit } from '../../../components/modal-edit/modal-edit';
+import { C } from '@angular/cdk/keycodes';
+import { ClientData } from '../../../models/clients-data.model';
 
 @Component({
   selector: 'app-list',
@@ -41,48 +44,49 @@ export class ListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.searchClients(this.currentPage, this.pageSize);
+    this.searchClients();
   }
 
   opened = false;
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  clients: ClientRequest[] = [];
   totalClientes = 0;
   pageSize = 16;
   currentPage = 1;
+
+  clients: ClientData[] = [];
+  page = 1;
+  limit = 10;
+  totalPages = 0;
 
   toggleSidenav() {
     this.sidenav.toggle();
   }
 
-  searchClients(page: number, limit: number): void {
-    this.clientService.listClients(page, limit).subscribe({
+  searchClients() {
+    this.clientService.getClients(this.page, this.limit).subscribe({
       next: (res) => {
         this.clients = res.clients;
-        this.totalClientes = res.total;
-        this.currentPage = res.page;
+        this.totalPages = res.totalPages;
+        this.page = res.currentPage;
       },
       error: (err) => {
-        console.error('Erro ao buscar clientes:', err);
+        console.error('Erro ao carregar clientes:', err);
       },
-    });
-  }
-
-  fetchClients(): void {
-    this.clientService.listClients(1, 10).subscribe((res) => {
-      this.clients = res.clients;
     });
   }
 
   deleteClient(id: number): void {
     this.dialog
-      .open(ModalDelete)
+      .open(ModalDelete,{
+        width: '400px',
+      })
       .afterClosed()
       .subscribe((result) => {
         if (result) {
           this.clientService.deleteClient(id).subscribe({
-            next: () => {
-              console.log('Cliente excluído com sucesso!');
+            next: (res) => {
+              console.log('Cliente excluído com sucesso!', res);
+              this.clients = this.clients.filter((client) => client.id !== id);
             },
             error: (err) => {
               console.error('Erro ao excluir cliente', err);
@@ -90,5 +94,18 @@ export class ListComponent implements OnInit {
           });
         }
       });
+  }
+
+  modalEdit(id: number) {
+    const dialogRef = this.dialog.open(ModalEdit, {
+      width: '400px',
+      data: { itemId: id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.searchClients();
+      }
+    });
   }
 }

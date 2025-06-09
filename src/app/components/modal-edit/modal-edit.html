@@ -1,0 +1,21 @@
+<h2 mat-dialog-title class="title-edit">Editar cliente:</h2>
+
+<mat-dialog-content class="edit">
+  <form [formGroup]="formEdit"  >
+    <mat-form-field appearance="fill" class="full-width" class="input-edit-form">
+      <input matInput formControlName="name" type="text" class="input-edit"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width" class="input-edit-form">
+      <input matInput formControlName="salary" type="number" class="input-edit"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width" class="input-edit-form">
+      <input matInput formControlName="companyValuation" type="number" class="input-edit"/>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button  (click)="save()" class="btn-edit">Editar cliente</button>
+
+</mat-dialog-actions>

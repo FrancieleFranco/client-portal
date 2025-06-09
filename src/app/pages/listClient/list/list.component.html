@@ -46,7 +46,7 @@
             >
               <mat-icon>add</mat-icon>
             </button>
-            <button mat-icon-button color="accent" >
+            <button mat-icon-button color="accent" (click)="modalEdit(clients.id)">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button color="red" (click)=" deleteClient(clients.id)">

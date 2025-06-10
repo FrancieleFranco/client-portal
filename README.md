@@ -1,59 +1,90 @@
-# ClientPortal
+# Teste Front-End Teddy - Franciele Alves Franco
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+Este projeto foi desenvolvido para o teste técnico da vaga de Desenvolvedor Front-End Pleno na empresa Teddy.
 
-## Development server
+---
 
-To start a local development server, run:
+## Descrição do projeto
 
-```bash
-ng serve
-```
+Aplicação feita em Angular (última versão) usando TypeScript para gerenciar clientes. A aplicação permite:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Inserir nome na tela inicial;
+- Visualizar lista de clientes cadastrados;
+- Cadastrar, selecionar, editar e excluir clientes;
+- Visualizar detalhes dos clientes selecionados;
+- Seleção de clientes via botão e radio buttons;
+- Aplicação responsiva para dispositivos desktop e mobile.
 
-## Code scaffolding
+Devido ao prazo e formato de trabalho freelancer, a arquitetura de micro-frontends não foi implementada. O foco foi garantir qualidade, componentização, boas práticas e usabilidade.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Funcionalidades entregues
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Requisitos básicos do sistema conforme solicitado
+- Responsividade completa
+- Deploy da aplicação na Vercel
+- README com instruções detalhadas
+- Vídeo demonstrativo da aplicação funcionando
+- Melhoria incluída: botão para selecionar clientes e controle via radio buttons
+- Componentização e organização da estrutura de pastas
+- Gerenciamento simples de estado
+- Padrões de código e commits consistentes
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Tecnologias utilizadas
 
-To build the project run:
+- Angular (última versão)
+- TypeScript
+- CSS para responsividade
+- Docker (configuração pronta para containerização)
+- Vercel (para deploy da aplicação)
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Como rodar o projeto localmente
 
-## Running unit tests
+### Pré-requisitos
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Node.js (recomendo v16+)
+- npm ou yarn
+- Docker (opcional, para containerização)
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+### Passo 1: Clonar o repositório
 
-For end-to-end (e2e) testing, run:
+bash
+git clone 
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Passo 2: Instalar dependências
+npm install
+# ou
+yarn install
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Passo 3: Executar a aplicação
+npm start
+# ou
+ng serve -- open http://localhost:4200
+
+---
+
+### Deploy
+A aplicação está deployada na Vercel e pode ser acessada aqui: https://client-portal-amber.vercel.app/home
+
+---
+
+### 🎥 Vídeo demonstrativo da aplicação
+
+Abaixo está o vídeo demonstrativo que mostra toda a aplicação em funcionamento:
+
+➡️ [Clique aqui para assistir o vídeo demonstrativo](https://drive.google.com/file/d/11MY8uIwhGnOtrmJVGD8Wkw5ZWI1Dj2-b/view?usp=drive_link)
+
+
+
+
